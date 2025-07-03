@@ -847,18 +847,25 @@ export default {
 		 * 提交表单
 		 */
 		submit_main: function submit_main(param, func) {
+			console.log("submit_main - 参数:", param);
+			console.log("submit_main - field:", this.field);
+			console.log("submit_main - this.query:", this.query);
+			
 			var url = this.url;
 			if (url) {
 				if (this.field) {
 					var id = param[this.field];
+					console.log("submit_main - 从param获取的ID:", id);
 					if (id) {
 						var q = {
 							method: 'set'
 						};
 						q[this.field] = id;
 						url = this.toUrl(q, url);
+						console.log("submit_main - 构建的URL:", url);
 					} else {
 						url += "method=add"
+						console.log("submit_main - 添加模式URL:", url);
 					}
 				} else {
 					url += "method=submit"
@@ -874,10 +881,13 @@ export default {
 				}
 			}
 
-			// console.log('提交', url);
+			console.log('submit_main - 最终URL:', url);
+			console.log('submit_main - 最终参数:', param);
+			
 			if (url) {
 				var _this = this;
 				this.$post(this.$toUrl(this.query, url), param, function(json, status) {
+					console.log("submit_main - 响应:", json);
 					if (json.result) {
 						_this.events("submit_after", json, func);
 					} else if (json.error) {

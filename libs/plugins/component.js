@@ -467,7 +467,12 @@ export default {
 					if (["add", "set", "del", "get"].indexOf(action) !== -1 && o[action] != 0) {
 						return o[action];
 					} else if (o.option) {
-						var option = JSON.parse(o.option);
+						let option = null;
+						if (typeof o.option === 'string' && (o.option.trim().startsWith('{') || o.option.trim().startsWith('['))) {
+							option = JSON.parse(o.option);
+						} else {
+							option = o.option; // 保留原样，或根据实际处理
+						}
 						return option[action];
 					} else {
 						return false;
@@ -481,7 +486,12 @@ export default {
 				$check_option(path, op) {
 					var o = this.$get_power(path);
 					if (o) {
-						var option = JSON.parse(o.option);
+						let option = null;
+						if (typeof o.option === 'string' && (o.option.trim().startsWith('{') || o.option.trim().startsWith('['))) {
+							option = JSON.parse(o.option);
+						} else {
+							option = o.option; // 保留原样，或根据实际处理
+						}
 						if (option[op])
 							return true
 					}
@@ -497,7 +507,12 @@ export default {
 					var path = paths.replaceAll("pages", "");
 					var o = this.$get_power(path);
 					if (o) {
-						var option = JSON.parse(o.option);
+						let option = null;
+						if (typeof o.option === 'string' && (o.option.trim().startsWith('{') || o.option.trim().startsWith('['))) {
+							option = JSON.parse(o.option);
+						} else {
+							option = o.option; // 保留原样，或根据实际处理
+						}
 						if (option[action])
 							return true
 					}
@@ -512,7 +527,12 @@ export default {
 					var path = paths.replaceAll("pages", "");
 					var o = this.$get_power(path);
 					if (o) {
-						var option = JSON.parse(o.option);
+						let option = null;
+						if (typeof o.option === 'string' && (o.option.trim().startsWith('{') || o.option.trim().startsWith('['))) {
+							option = JSON.parse(o.option);
+						} else {
+							option = o.option; // 保留原样，或根据实际处理
+						}
 						if (option.pay)
 							return true
 					}
@@ -526,7 +546,12 @@ export default {
 				,$check_figure(path) {
 					var o = this.$get_power(path);
 					if (o){
-						var option = JSON.parse(o.option);
+						let option = null;
+						if (typeof o.option === 'string' && (o.option.trim().startsWith('{') || o.option.trim().startsWith('['))) {
+							option = JSON.parse(o.option);
+						} else {
+							option = o.option; // 保留原样，或根据实际处理
+						}
 						if (option.figure)
 							return true
 					}
@@ -546,7 +571,12 @@ export default {
 					var path = path_pre+path_last;
 					var o = this.$get_power(path);
 					if (o) {
-						var option = JSON.parse(o.option);
+						let option = null;
+						if (typeof o.option === 'string' && (o.option.trim().startsWith('{') || o.option.trim().startsWith('['))) {
+							option = JSON.parse(o.option);
+						} else {
+							option = o.option; // 保留原样，或根据实际处理
+						}
 						if (option.examine)
 							return true
 					}
@@ -559,7 +589,12 @@ export default {
 				$check_cart_page(path) {
 					var o = this.$get_power(path);
 					if (o) {
-						var option = JSON.parse(o.option);
+						let option = null;
+						if (typeof o.option === 'string' && (o.option.trim().startsWith('{') || o.option.trim().startsWith('['))) {
+							option = JSON.parse(o.option);
+						} else {
+							option = o.option; // 保留原样，或根据实际处理
+						}
 						if (option.cart_page)
 							return true
 					}
